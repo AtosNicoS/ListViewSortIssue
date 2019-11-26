@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="ListViewSort.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ListViewSort"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Button Content="Sort" x:Name="SortButton" Click="SortButton_OnClick" Grid.Row="0"/>
+		<Button Content="Reset" x:Name="ResetButton" Click="ResetButton_OnClick" Grid.Row="1"/>
+
+		<ListView ItemsSource="{x:Bind ListViewItemViewModels, Mode=OneTime}" SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}" 
+		          SelectionMode="Single" Grid.Row="2"
+		          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto" Height="700">
+
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="local:ListViewItemViewModel">
+					<ListViewItem IsSelected="{x:Bind IsSelected, Mode=TwoWay}">
+						<TextBlock Text="{x:Bind Count, Mode=OneTime}"></TextBlock>
+					</ListViewItem>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+
+		</ListView>
+	</Grid>
+</Page>
